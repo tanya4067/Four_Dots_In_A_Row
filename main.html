@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Connecting Dot Games</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+    <script>
+        var i=0;
+        var dict={};
+        $(document).ready(function(){
+            $(".dot").click(function(){
+                var a=event.target.id;
+                let n =Number(a.slice(3));
+                
+                if(i%2==0)
+                {
+                   document.getElementById("turn").innerHTML= "It is "+firstName+" turn";
+                   let temp=0;
+                   for(let x=4;x>=0;x--)
+                   {
+                    temp=(n+(x*7));
+                    if(temp<=35)
+                    {    
+                        if((temp in dict)==0)
+                        {
+                            dict[temp]="Red";
+                            break;
+                        }
+                    }
+                   }
+                   red(temp);
+                }
+                else
+                {
+                   document.getElementById("turn").innerHTML= "It is "+secondName+" turn";
+                   let temp=0;
+                   for(let x=4;x>=0;x--)
+                   {
+                    temp=(n+(x*7));
+                    if(temp<=35)
+                    {    
+                        if((temp in dict)==0)
+                        {
+                            dict[temp]="Blue";
+                            break;
+                            
+                        }
+                    }
+                   }
+                   blue(temp);
+                }
+                i+=1;
+
+            });
+        });
+        function red (id)
+        {   
+            id1="dot"+(id+1).toString();
+            id2="dot"+(id+2).toString();
+            id3="dot"+(id+3).toString();
+            id11="dot"+(id-1).toString();
+            id12="dot"+(id-2).toString();
+            id13="dot"+(id-3).toString();
+            id="dot"+id.toString();
+            document.getElementById(id).style.backgroundColor="red";
+            x=document.getElementById(id).style.backgroundColor;
+            c1=document.getElementById(id1);
+            c2=document.getElementById(id2);
+            c3=document.getElementById(id3);
+            c11=document.getElementById(id11);
+            c12=document.getElementById(id12);
+            c13=document.getElementById(id13);
+            if(c1!=null && c2!=null && c3!=null)
+            {
+                conditionCheck(x,id1,id2,id3);
+                
+            }
+            if(c11!=null && c12!=null && c13!=null)
+            {
+                conditionCheck(x,id11,id12,id13);
+            }
+            if(c11!=null && c1!=null && c2!=null)
+            {   
+                conditionCheck(x,id11,id1,id2);
+                
+            }
+            if(c11!=null && c12!=null && c1!=null)
+            {
+                conditionCheck(x,id11,id12,id1);
+            }
+        }
+        function blue (id)
+        {   id1="dot"+(id+1).toString();
+            id2="dot"+(id+2).toString();
+            id3="dot"+(id+3).toString();
+            id11="dot"+(id-1).toString();
+            id12="dot"+(id-2).toString();
+            id13="dot"+(id-3).toString();
+            id="dot"+id.toString();
+            document.getElementById(id).style.backgroundColor="blue";
+            x=document.getElementById(id).style.backgroundColor;
+            c1=document.getElementById(id1);
+            c2=document.getElementById(id2);
+            c3=document.getElementById(id3);
+            c11=document.getElementById(id11);
+            c12=document.getElementById(id12);
+            c13=document.getElementById(id13);
+            if(c1!=null && c2!=null && c3!=null)
+            {
+                conditionCheck(x,id1,id2,id3);
+            }
+            if(c11!=null && c12!=null && c13!=null)
+            {
+                conditionCheck(x,id11,id12,id13);
+            }
+            if(c11!=null && c1!=null && c2!=null)
+            {   conditionCheck(x,id11,id1,id2);
+                
+            }
+            if(c11!=null && c12!=null && c1!=null)
+            {
+                conditionCheck(x,id11,id12,id1);
+            }
+        }
+        function conditionCheck(x,a,b,c)
+        {
+                b1=document.getElementById(a).style.backgroundColor;
+                b2=document.getElementById(b).style.backgroundColor;
+                b3=document.getElementById(c).style.backgroundColor;
+                if(x=='red' && b1=='red' && b2=='red' && b3=='red')
+                {
+                    alert("Red Wins");
+                    location.reload();
+                }
+                if(x=='blue' && b1=='blue' && b2=='blue' && b3=='blue')
+                {
+                    alert("Blue Wins");
+                    location.reload();
+                }
+        }
+        
+        
+       
+    </script>
+  </head>
+  <body style="background-color: cadetblue;">
+    <div class="heading">
+        <h1>Welcome to connect Four </h1>
+        <p>The object of this game is to connect four of your chips in a row!</p>
+        <p id="turn">It is Red Turn</p>
+    </div>
+    <div class="matrix">
+        <div>
+                <span class="dot" id="dot1"></span>
+                <span class="dot" id="dot2"></span>
+                <span class="dot" id="dot3"></span>
+                <span class="dot" id="dot4"></span>
+                <span class="dot" id="dot5"></span>
+                <span class="dot" id="dot6"></span>
+                <span class="dot" id="dot7"></span>
+        </div>
+        <div>
+                <span class="dot" id="dot8"></span>
+                <span class="dot" id="dot9"></span>
+                <span class="dot" id="dot10"></span>
+                <span class="dot" id="dot11"></span>
+                <span class="dot" id="dot12"></span>
+                <span class="dot" id="dot13"></span>
+                <span class="dot" id="dot14"></span>
+    </div>
+    <div>
+                <span class="dot" id="dot15"></span>
+                <span class="dot" id="dot16"></span>
+                <span class="dot" id="dot17"></span>
+                <span class="dot" id="dot18"></span>
+                <span class="dot" id="dot19"></span>
+                <span class="dot" id="dot20"></span>
+                <span class="dot" id="dot21"></span>
+</div>
+<div>
+                <span class="dot" id="dot22"></span>
+                <span class="dot" id="dot23"></span>
+                <span class="dot" id="dot24"></span>
+                <span class="dot" id="dot25"></span>
+                <span class="dot" id="dot26"></span>
+                <span class="dot" id="dot27"></span>
+                <span class="dot" id="dot28"></span>
+</div>
+<div>
+                <span class="dot" id="dot29"></span>
+                <span class="dot" id="dot30"></span>
+                <span class="dot" id="dot31"></span>
+                <span class="dot" id="dot32"></span>
+                <span class="dot" id="dot33"></span>
+                <span class="dot" id="dot34"></span>
+                <span class="dot" id="dot35"></span>
+</div>
+
+        
+</div>
+<body>
+</html>
